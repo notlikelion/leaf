@@ -39,4 +39,6 @@ public class MemberController {
         model.addAttribute("members", memberRepository);
         return "member/list";
     }
+
+
 }
