@@ -1,13 +1,11 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>회원 관리 시스템</title>
+<head th:replace="~{_layout/header :: header-fragment}">
 </head>
 <body>
+    <div th:insert="~{_layout/header :: gnb-fragment}">
+    </div>
     <div>
-        <h1><a href="/">회원 관리</a></h1>
-        <hr>
         <h2>회원 목록</h2>
         <button onclick="location.href = '/members/add'">신규 회원 등록</button>
         <ul>
@@ -19,10 +17,7 @@
         <p th:if="${#lists.isEmpty(members)}">
             등록된 회원이 없습니다
         </p>
-        <hr>
-        <footer>
-            2025년 인프라 반
-        </footer>
-    </div>
+        <div th:replace="~{_layout/footer :: footer-fragment}">
+        </div>
 </body>
 </html>
