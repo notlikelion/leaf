@@ -1,14 +1,18 @@
 package com.example.leaf.controller;
 
+import com.example.leaf.model.dto.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Controller // Spring, SpringBoot Scan. + Controller (DispatcherServlet)
 // @~Mapping - 주소, 호출
+@RequestMapping("/members")
 public class MemberController {
     @GetMapping("/example")
     public String example(Model model) {
@@ -21,5 +25,18 @@ public class MemberController {
         model.addAttribute("totalCount", members.size());
         return "example"; // jsp -> WEB~~~~
         // thymeleaf -> resources/templates/... .html
+    }
+
+    private static final List<Member> memberRepository = new CopyOnWriteArrayList<>();
+
+    static {
+        memberRepository.add(new Member("u1", "김자바"));
+        memberRepository.add(new Member("u2", "박자바"));
+    }
+
+    @GetMapping // /members
+    public String list(Model model) {
+        model.addAttribute("members", memberRepository);
+        return "member/list";
     }
 }
