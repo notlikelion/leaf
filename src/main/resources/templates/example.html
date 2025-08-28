@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>예제</title>
+</head>
+<body>
+    <h3>총 회원수 : <span th:text="${totalCount}">0</span>명</h3>
+    <p th:if="${isManager}">[관리자 모드]</p>
+    <p th:unless="${isManager}">[일반 사용자 모드]</p>
+    <ul>
+        <!-- 앞에 반복할 변수명 : ${...} 향상된 for문.    -->
+        <li th:each="name : ${memberList}" th:text="${name}">회원 이름</li>
+    </ul>
+    <!--  타임리프에서 제공하는 유틸리티(문자열, 리스트 등을 다룰 수 있는) 기능  -->
+    <p th:if="${#lists.isEmpty(memberList)}">등록된 회원이 없습니다</p>
+</body>
+</html>
