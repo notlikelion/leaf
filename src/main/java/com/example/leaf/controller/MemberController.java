@@ -4,6 +4,8 @@ import com.example.leaf.model.dto.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -30,8 +32,8 @@ public class MemberController {
     private static final List<Member> memberRepository = new CopyOnWriteArrayList<>();
 
     static {
-        memberRepository.add(new Member("u1", "김자바"));
-        memberRepository.add(new Member("u2", "박자바"));
+//        memberRepository.add(new Member("u1", "김자바"));
+//        memberRepository.add(new Member("u2", "박자바"));
     }
 
     @GetMapping // /members
@@ -47,5 +49,9 @@ public class MemberController {
         return "member/addForm";
     }
 
-
+    @PostMapping("/add") // /members/add
+    public String addForm(@ModelAttribute Member member) {
+        memberRepository.add(member);
+        return "redirect:/members"; // PRG
+    }
 }
