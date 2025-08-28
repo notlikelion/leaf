@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_layout/header :: header-fragment}">
+</head>
+<body>
+    <div th:insert="~{_layout/header :: gnb-fragment}">
+    </div>
+    <div>
+        <h2>회원 등록</h2>
+        <form action="/members/add" method="post" th:object="${member}">
+            <!-- member : name 안만들어도 field -> 객체 기반으로 name이 지정 -->
+            <input th:field="*{memberId}" required placeholder="ID 입력">
+            <input th:field="*{name}" required placeholder="이름 입력">
+            <button>등록</button>
+            <button onclick="location.href='/members'">목록으로</button>
+        </form>
+    </div>
+</body>
+</html>

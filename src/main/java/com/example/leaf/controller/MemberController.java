@@ -40,5 +40,12 @@ public class MemberController {
         return "member/list";
     }
 
+    @GetMapping("/add") // /members/add
+    public String addForm(Model model) {
+        // 빈 멤버 객체를 하나 넣는다
+        model.addAttribute("member", new Member());
+        return "member/addForm";
+    }
+
 
 }
